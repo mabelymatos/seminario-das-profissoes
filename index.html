@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seminário das Profissões</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Seminário das Profissões</h1>
+    <h2>Quiz: Você conhece a profissão de Designer Gráfico?</h2>
+
+    <div id="quiz">
+      <div class="question" id="question1">
+        <p>1. O que faz um designer gráfico?</p>
+        <button onclick="responder(this, true)">Cria peças visuais como logotipos e panfletos</button>
+        <button onclick="responder(this, false)">Desenvolve softwares de banco de dados</button>
+        <button onclick="responder(this, false)">Realiza cirurgias plásticas</button>
+      </div>
+
+      <div class="question" id="question2">
+        <p>2. Qual software é comumente usado por designers gráficos?</p>
+        <button onclick="responder(this, true)">Adobe Photoshop</button>
+        <button onclick="responder(this, false)">Microsoft Excel</button>
+        <button onclick="responder(this, false)">AutoCAD</button>
+      </div>
+
+      <div class="question" id="question3">
+        <p>3. Qual é uma habilidade importante para um designer gráfico?</p>
+        <button onclick="responder(this, true)">Criatividade</button>
+        <button onclick="responder(this, false)">Força física</button>
+        <button onclick="responder(this, false)">Conhecimento em pilotagem</button>
+      </div>
+    </div>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    let acertos = 0;
+    let totalPerguntas = 3;
+    let respondidas = 0;
+
+    function responder(botao, correta) {
+      if (botao.classList.contains("respondido")) return;
+
+      const botoes = botao.parentElement.querySelectorAll("button");
+      botoes.forEach(b => b.classList.add("respondido"));
+
+      if (correta) {
+        botao.classList.add("correta");
+        acertos++;
+      } else {
+        botao.classList.add("errada");
+      }
+
+      respondidas++;
+
+      if (respondidas === totalPerguntas) {
+        mostrarResultado();
+      }
+    }
+
+    function mostrarResultado() {
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = `<h3>Você acertou ${acertos} de ${totalPerguntas} perguntas!</h3>`;
+    }
+  </script>
+
+</body>
+</html>
